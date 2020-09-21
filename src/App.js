@@ -5,23 +5,21 @@ import Main from './components/Main';
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props){
+    super(props);
 
-        this.state = {
-            dishes: DISHES
-        };
-    }
-    render() {
-        return ( <
-            div className = "App" >
-            <
-            Main / >
-            <
-            /div>
-        );
-    }
-
+    this.state  = {
+      dishes: DISHES
+    };
+  }
+render(){
+  return (
+    <div className="App">
+      <Main />
+    </div>
+  );
+}
+  
 }
 
 export default App;
