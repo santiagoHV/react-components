@@ -20,6 +20,7 @@ const Menu = (props) => {
           </div>
         );
     });  
+    
     return(
         
         <div className="row">
