@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { Control, LocalForm , Errors} from 'react-redux-form';
 import { Card, CardImg,  Button, Modal, ModalHeader, ModalBody, Label, Row, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
-    function RenderComments({comments}) {
+    function RenderComments({comments, addComment, dishId}) {
         const commentsList = comments.map((comment) => {
             return (
                 <li>
@@ -14,7 +14,14 @@ import { Card, CardImg,  Button, Modal, ModalHeader, ModalBody, Label, Row, Card
                 </li>
             );
         });
-        return commentsList;
+        return(
+            <div>
+                <ul class = "list-unstyled" > 
+                {commentsList}
+                </ul>
+                <CommentForm dishId={dishId} addComment={addComment} />
+            </div>
+        );
     }
 
     function RenderDish({dish}){
@@ -24,7 +31,7 @@ import { Card, CardImg,  Button, Modal, ModalHeader, ModalBody, Label, Row, Card
                 <CardImg top src = { dish.image } alt = { dish.name }/> <CardBody >
                 <CardTitle > { dish.name } </CardTitle> <CardText > { dish.description } </CardText> </CardBody> 
                 </Card>
- 
+
             );
     }
 
@@ -51,10 +58,11 @@ import { Card, CardImg,  Button, Modal, ModalHeader, ModalBody, Label, Row, Card
                 </div>
                 <div className="col-12 col-md-5 m-1" >
                 <h2 > Comments </h2>
-                <ul class = "list-unstyled" > 
-                    <RenderComments comments={props.comments}/>
-                </ul>
-                    <CommentForm />
+                
+                <RenderComments comments={props.comments}
+                    addComment={props.addComment}
+                    dishId={props.dish.id}
+                />
                 </div>
             </div>
             
@@ -84,7 +92,8 @@ class CommentForm extends Component{
       }
     handleSubmit(values){
         console.log("current state is: "+JSON.stringify(values));
-        alert("current state is: "+JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+
     }
     render(){
         return(
