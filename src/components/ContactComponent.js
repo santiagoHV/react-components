@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Breadcrumb, BreadcrumbItem, FormGroup, Label, Col, Input, Form, Button, Row} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors} from 'react-redux-form'
+import { Control, LocalForm, Errors} from 'react-redux-form';
+
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
